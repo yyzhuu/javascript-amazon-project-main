@@ -29,7 +29,8 @@ export function renderOrderSummary() {
 
   cartSummaryHTML+= 
 ` <div class="cart-item-container 
-js-cart-item-container-${matchingProduct.id}">
+  js-cart-item-container
+  js-cart-item-container-${matchingProduct.id}">
       <div class="delivery-date">
         Delivery date: ${dateString}
       </div>
@@ -45,7 +46,8 @@ js-cart-item-container-${matchingProduct.id}">
           <div class="product-price">
             $${formatCurrency(matchingProduct.priceCents)}
           </div>
-          <div class="product-quantity">
+          <div class="product-quantity
+          js-product-quantity-${matchingProduct.id}">
             <span>
               Quantity: <span class="quantity-label">${cartItem.quantity}</span>
             </span>
@@ -53,7 +55,9 @@ js-cart-item-container-${matchingProduct.id}">
               Update
             </span>
             <span class="delete-quantity-link link-primary
-            js-delete-link" data-product-id="${matchingProduct.id}">
+            js-delete-link
+            js-delete-link-${matchingProduct.id}"
+            data-product-id="${matchingProduct.id}">
               Delete
             </span>
           </div>
@@ -67,8 +71,17 @@ js-cart-item-container-${matchingProduct.id}">
         </div>
       </div>
     </div>`; 
+  
+    const orderSummaryElement = document.querySelector('.js-order-summary');
+    if (orderSummaryElement) {
+      orderSummaryElement.innerHTML = cartSummaryHTML;
+    } else {
+      console.error('Element with class .js-order-summary not found in the DOM.');
+    }
 
 }); 
+
+
 
 function deliveryOptionsHTML(matchingProduct, cartItem) { 
 
@@ -112,8 +125,6 @@ function deliveryOptionsHTML(matchingProduct, cartItem) {
   return html; 
 }
 
-document.querySelector('.js-order-summary'). 
-  innerHTML = cartSummaryHTML; 
 
 document.querySelectorAll('.js-delete-link')
   .forEach((link) => { 
