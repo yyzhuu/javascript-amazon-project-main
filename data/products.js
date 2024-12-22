@@ -55,13 +55,40 @@ class Clothing extends Product{ //child class
   }
 
 }
-
+/*
 
 const date = new Date(); 
 console.log(date); 
 
 console.log(date.toLocaleTimeString()); 
 
+*/ 
+
+export let products = []; 
+
+export function loadProducts(fun) { //load products from backend 
+  const xhr = new XMLHttpRequest(); 
+
+  xhr.addEventListener('load', () => { 
+    products = JSON.parse(xhr.response).map((productDetails) => { 
+
+      if(productDetails.type === 'clothing'){ //clothing 
+        return new Clothing(productDetails); 
+      }
+      return new Product(productDetails); //regular product 
+    }); //convert from JSON to JS obj,then class 
+
+    console.log(products); 
+    fun(); 
+
+  }); 
+
+  xhr.open('GET', 'https://supersimplebackend.dev/products'); 
+  xhr.send(); //send http message to backend 
+
+}
+
+/*
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -730,4 +757,5 @@ export const products = [
   return new Product(productDetails); //regular product 
 });
 
+*/ 
 
