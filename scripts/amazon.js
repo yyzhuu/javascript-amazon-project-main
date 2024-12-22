@@ -76,7 +76,6 @@ function updateCartQuantity() {
 }
 
 
-console.log(productsHTML); 
 document.querySelector('.js-product-grid')
   .innerHTML = productsHTML; 
 

@@ -57,8 +57,10 @@ class Clothing extends Product{ //child class
 }
 
 
-console.log(tshirt); 
-console.log(tshirt.getPrice());
+const date = new Date(); 
+console.log(date); 
+
+console.log(date.toLocaleTimeString()); 
 
 export const products = [
   {
