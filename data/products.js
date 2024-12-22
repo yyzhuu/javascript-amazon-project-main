@@ -27,15 +27,38 @@ class Product {
     this.priceCents = productDetails.priceCents; 
   }
 
-  getStartUrl() { 
+  getStarUrl() { 
     return `images/ratings/rating-${this.rating.stars *10}.png`
   }
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`
 
   }
+
+  extraInfoHTML() { 
+    return ``; 
+  }
 }
 
+class Clothing extends Product{ //child class 
+  sizeChartLink; 
+  constructor(productDetails) { 
+    super(productDetails); 
+    this.sizeChartLink = productDetails.sizeChartLink; 
+  }
+
+
+  extraInfoHTML() { 
+    return `
+    <a href="${this.sizeChartLink}" target="_blank">Size Chart</a>
+    `
+  }
+
+}
+
+
+console.log(tshirt); 
+console.log(tshirt.getPrice());
 
 export const products = [
   {
@@ -698,7 +721,11 @@ export const products = [
     ]
   }  
 ].map((productDetails) => { 
-  return new Product(productDetails); 
+
+  if(productDetails.type === 'clothing'){ //clothing 
+    return new Clothing(productDetails); 
+  }
+  return new Product(productDetails); //regular product 
 });
 
 
