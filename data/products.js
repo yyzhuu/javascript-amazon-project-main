@@ -56,7 +56,6 @@ console.log(date.toLocaleTimeString());
 */ 
 
 export let products = []; 
-
 export function loadProducts(fun) { //load products from backend 
   const xhr = new XMLHttpRequest(); 
 
@@ -64,7 +63,7 @@ export function loadProducts(fun) { //load products from backend
     console.log('product array after loading', products); 
     const product = getProduct('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
     console.log('Matching product:', product);
-    
+
     products = JSON.parse(xhr.response).map((productDetails) => { 
 
       if(productDetails.type === 'clothing'){ //clothing 
