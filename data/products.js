@@ -1,15 +1,6 @@
 import { formatCurrency } from "../scripts/utils/money.js";
 
-export function getProduct(productId){ 
-  let matchingProduct; 
-  
-  products.forEach((product) => { 
-    if(product.id === productId) { 
-      matchingProduct = product; 
-    }
-  }); 
-  return matchingProduct; 
-}
+
 
 
 class Product { 
@@ -70,6 +61,10 @@ export function loadProducts(fun) { //load products from backend
   const xhr = new XMLHttpRequest(); 
 
   xhr.addEventListener('load', () => { 
+    console.log('product array after loading', products); 
+    const product = getProduct('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+    console.log('Matching product:', product);
+    
     products = JSON.parse(xhr.response).map((productDetails) => { 
 
       if(productDetails.type === 'clothing'){ //clothing 
@@ -79,13 +74,32 @@ export function loadProducts(fun) { //load products from backend
     }); //convert from JSON to JS obj,then class 
 
     console.log(products); 
-    fun(); 
+    fun();  
 
   }); 
 
   xhr.open('GET', 'https://supersimplebackend.dev/products'); 
   xhr.send(); //send http message to backend 
 
+}
+
+export function getProduct(productId){ 
+  let matchingProduct; 
+
+  console.log('Looking for product with ID:', productId); // Debugging
+  console.log('type of productId', typeof productId)
+  
+  products.forEach((product) => { 
+    console.log('product id', product.id); 
+    console.log('type of product.id', typeof product.id)
+
+    if(product.id === productId) { 
+      matchingProduct = product; 
+    }
+  }); 
+  console.log(products); 
+  return matchingProduct; 
+  
 }
 
 /*

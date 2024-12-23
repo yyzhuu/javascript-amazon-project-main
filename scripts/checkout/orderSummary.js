@@ -27,7 +27,7 @@ export function renderOrderSummary() {
     'dddd, MMMM D'); 
 
 
-  cartSummaryHTML+= 
+  console.log(cartSummaryHTML+= 
 ` <div class="cart-item-container 
   js-cart-item-container
   js-cart-item-container-${matchingProduct.id}">
@@ -70,7 +70,8 @@ export function renderOrderSummary() {
           ${deliveryOptionsHTML(matchingProduct, cartItem)}
         </div>
       </div>
-    </div>`; 
+    </div>`); 
+
   
     const orderSummaryElement = document.querySelector('.js-order-summary');
     if (orderSummaryElement) {
