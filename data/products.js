@@ -74,7 +74,7 @@ export function loadProductsFetch() {
         return new Product(productDetails); 
       });
 
-      console.log('Loaded products:', products);
+      console.log('load products');
     })
     .catch((error) => {
       console.error('Error loading products:', error);
