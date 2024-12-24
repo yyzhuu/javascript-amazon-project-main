@@ -56,6 +56,37 @@ console.log(date.toLocaleTimeString());
 */ 
 
 export let products = []; 
+
+export function loadProductsFetch() { 
+  const promise = fetch('https://supersimplebackend.dev/products')
+    .then((response) =>
+      {
+        return response.json()
+      })
+    .then((productsData) => { 
+      //console.log('Fetched data:', productsData); // Debug
+      
+      // Handle array of arrays
+      products = productsData.map((productDetails) => { 
+        if (productDetails.type === 'clothing') { 
+          return new Clothing(productDetails); 
+        }
+        return new Product(productDetails); 
+      });
+
+      console.log('Loaded products:', products);
+    })
+    .catch((error) => {
+      console.error('Error loading products:', error);
+    });
+    return promise; 
+}
+
+loadProductsFetch().then(() => { 
+  console.log('next step')
+}); 
+
+/*
 export function loadProducts(fun) { //load products from backend 
   const xhr = new XMLHttpRequest(); 
 
@@ -70,7 +101,7 @@ export function loadProducts(fun) { //load products from backend
       return new Product(productDetails); //regular product 
     }); //convert from JSON to JS obj,then class 
 
-    console.log(products); 
+    console.log('load products'); 
     fun();  
 
   }); 
@@ -79,7 +110,7 @@ export function loadProducts(fun) { //load products from backend
   xhr.send(); //send http message to backend 
 
 }
-
+*/
 export function getProduct(productId){ 
   let matchingProduct; 
 
@@ -94,7 +125,7 @@ export function getProduct(productId){
       matchingProduct = product; 
     }
   }); 
-  console.log(products); 
+  console.log('response from backend:', products); 
   return matchingProduct; 
   
 }
