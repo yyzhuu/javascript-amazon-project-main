@@ -5,11 +5,28 @@ import { loadProductsFetch } from "../data/products.js";
 
 
 async function loadPage() { 
-  console.log('load page')
 
-  await loadProductsFetch(); //render products
+  console.log('load page'); 
 
-  await loadCart(); 
+  try{ 
+
+    //throw 'error'
+
+    await loadProductsFetch(); //render products
+
+    const value = await new Promise((resolve, reject) => { 
+
+      //throw 'error2'
+      loadCart(() => { 
+
+        //reject('error3')
+        resolve('value3')
+      })
+    })  
+
+  }catch(error){ 
+    console.log('Please try again later.')
+  }
 
   renderOrderSummary(); 
   renderPaymentSummary(); 

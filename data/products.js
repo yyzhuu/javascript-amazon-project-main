@@ -74,19 +74,21 @@ export function loadProductsFetch() {
         return new Product(productDetails); 
       });
 
-      console.log('load products');
     })
     .catch((error) => {
-      console.error('Error loading products:', error);
+      console.error('Error loading products', error); 
     });
     return promise; 
 }
+
+loadProductsFetch(); 
+
 
 loadProductsFetch().then(() => { 
   console.log('next step')
 }); 
 
-/*
+
 export function loadProducts(fun) { //load products from backend 
   const xhr = new XMLHttpRequest(); 
 
@@ -101,16 +103,23 @@ export function loadProducts(fun) { //load products from backend
       return new Product(productDetails); //regular product 
     }); //convert from JSON to JS obj,then class 
 
-    console.log('load products'); 
+    console.log('load products')
+
     fun();  
 
+  }); 
+
+  xhr.addEventListener('error', (error) => { //error handling
+    console.log('Unexpected error. Please try again later')
   }); 
 
   xhr.open('GET', 'https://supersimplebackend.dev/products'); 
   xhr.send(); //send http message to backend 
 
 }
-*/
+
+
+
 export function getProduct(productId){ 
   let matchingProduct; 
 
