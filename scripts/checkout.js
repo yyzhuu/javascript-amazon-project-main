@@ -1,6 +1,8 @@
 //import '../data/cart-class.js';
 import { loadCart } from "../data/cart.js";
 import { loadProductsFetch } from "../data/products.js";
+import { renderPaymentSummary } from "./checkout/paymentSummary.js";
+
 //import '../data/backend-practice.js';
 
 
@@ -28,7 +30,7 @@ async function loadPage() {
     console.log('Please try again later.')
   }
 
-  renderOrderSummary(); 
+ // renderOrderSummary(); 
   renderPaymentSummary(); 
 
 }
