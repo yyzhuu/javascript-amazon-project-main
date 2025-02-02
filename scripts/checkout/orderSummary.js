@@ -152,4 +152,4 @@ document.querySelectorAll('.js-delivery-option')
   })
 }
 
-renderOrderSummary(); 
+//renderOrderSummary(); 

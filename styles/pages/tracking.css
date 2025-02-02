@@ -62,6 +62,11 @@
   .progress-label {
     margin-bottom: 3px;
   }
+
+  .progress-label.current-status {
+    font-weight: bold; /* Highlight the current status */
+    color: green; /* Change the color for the current status */
+  }
 }
 
 .progress-bar-container {
